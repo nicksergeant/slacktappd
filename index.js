@@ -49,7 +49,6 @@ users.forEach(function(user) {
   }));
 });
 
-
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/slacktappd';
 MongoClient.connect(mongoUri, function(err, db) {
   Q.all(userPromises).then(function() {
