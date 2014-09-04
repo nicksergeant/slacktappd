@@ -30,8 +30,7 @@ function untappdUser(username) {
   var deferred = Q.defer();
   request({
     json: true,
-    strictSSL: false,
-    url: 'http://api.untappd.com/v4/user/info/' + username + '?client_id=' + process.env.UNTAPPD_CLIENT_ID + '&client_secret=' + process.env.UNTAPPD_CLIENT_SECRET
+    url: 'https://api.untappd.com/v4/user/info/' + username + '?client_id=' + process.env.UNTAPPD_CLIENT_ID + '&client_secret=' + process.env.UNTAPPD_CLIENT_SECRET
   }, function(err, res, body) {
     deferred.resolve(body);
   });
