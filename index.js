@@ -44,8 +44,10 @@ var userPromises = [];
 
 users.forEach(function(user) {
   userPromises.push(untappdUser(user).then(function(res) {
-    var mostRecentCheckin = res.response.user.checkins.items[0];
-    checkins.push(mostRecentCheckin);
+    if (res.response.user && res.response.user.checkins && res.response.user.checkins.length) {
+      var mostRecentCheckin = res.response.user.checkins.items[0];
+      checkins.push(mostRecentCheckin);
+    }
   }));
 });
 
