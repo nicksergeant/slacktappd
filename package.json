@@ -1,0 +1,29 @@
+{
+  "name": "slacktappd",
+  "version": "1.0.0",
+  "description": "A tiny little app to post Untappd checkins to Slack.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicksergeant/slacktappd.git"
+  },
+  "keywords": [
+    "slack",
+    "untappd"
+  ],
+  "author": "Nick Sergeant <nick@nicksergeant.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicksergeant/slacktappd/issues"
+  },
+  "homepage": "https://github.com/nicksergeant/slacktappd",
+  "dependencies": {
+    "futures": "^2.3.3",
+    "mongodb": "^1.4.9",
+    "q": "^1.0.1",
+    "request": "^2.40.0"
+  }
+}
