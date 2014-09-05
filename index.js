@@ -16,9 +16,9 @@ function postToSlack(checkin) {
   var payload = {
     "username": "Untappd",
     "text": "" +
-      checkin.user.user_name + " is drinking <https://untappd.com/beer/" + checkin.beer.bid + "|" + checkin.beer.beer_name + "> " +
-      "(" + checkin.beer.beer_style + ", " + checkin.beer.beer_abv + "% ABV) " +
-      "by <https://untappd.com/brewery/" + checkin.brewery.brewery_id + "|" + checkin.brewery.brewery_name + ">.\n" + 
+      checkin.user.user_name + " is drinking <https://untappd.com/beer/" + checkin.beer.bid + "|" + checkin.beer.beer_name.replace('\'', '’') + "> " +
+      "(" + checkin.beer.beer_style.replace('\'', '’') + ", " + checkin.beer.beer_abv + "% ABV) " +
+      "by <https://untappd.com/brewery/" + checkin.brewery.brewery_id + "|" + checkin.brewery.brewery_name.replace('\'', '’') + ">.\n" + 
       "He rated it a " + checkin.rating_score + 
         (checkin.checkin_comment ?
           " and said \"" + checkin.checkin_comment.replace('\'', '’') + "\". " :
