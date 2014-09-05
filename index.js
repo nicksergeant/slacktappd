@@ -21,7 +21,7 @@ function postToSlack(checkin) {
       "by <https://untappd.com/brewery/" + checkin.brewery.brewery_id + "|" + checkin.brewery.brewery_name + ">.\n" + 
       "He rated it a " + checkin.rating_score + 
         (checkin.checkin_comment ?
-          " and said \"" + checkin.checkin_comment.replace('\'', '&apos;') + "\". " :
+          " and said \"" + checkin.checkin_comment.replace('\'', '’') + "\". " :
           ". ") +
       "<https://untappd.com/user/" + checkin.user.user_name + "/checkin/" + checkin.checkin_id + "|Toast »>"
   };
