@@ -25,7 +25,12 @@ function postToSlack(checkin) {
           ". ") +
       "<https://untappd.com/user/" + checkin.user.user_name + "/checkin/" + checkin.checkin_id + "|Toast »>"
   };
-  exec('curl -X POST --data-urlencode \'payload=' + JSON.stringify(payload) + '\' ' + process.env.SLACK_WEBHOOK_URL, done);
+
+  var webhookURLs = process.env.SLACK_WEBHOOK_URL.split(',');
+  webhookURLs.forEach(function(webhookURL) {
+    exec('curl -X POST --data-urlencode \'payload=' + JSON.stringify(payload) + '\' ' + webhookURL, done);
+  });
+
   return deferred.promise;
 }
 
