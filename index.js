@@ -26,6 +26,13 @@ function postToSlack(checkin) {
       "<https://untappd.com/user/" + checkin.user.user_name + "/checkin/" + checkin.checkin_id + "|Toast »>"
   };
 
+  if (checkin.media.count) {
+    payload.attachments = [{
+      fallback: "Checkin photo",
+      image_url: checkin.media.items[0].photo.photo_img_lg
+    }];
+  }
+
   var webhookURLs = process.env.SLACK_WEBHOOK_URL.split(',');
   webhookURLs.forEach(function(webhookURL) {
     exec('curl -X POST --data-urlencode \'payload=' + JSON.stringify(payload) + '\' ' + webhookURL, done);
