@@ -69,6 +69,7 @@ users.forEach(function(user) {
 
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://172.17.42.1:27017/slacktappd';
 MongoClient.connect(mongoUri, function(err, db) {
+  if (err) throw err;
   Q.all(userPromises).then(function() {
     var sequence = futures.sequence();
     checkins.forEach(function(checkin) {
