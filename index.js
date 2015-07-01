@@ -98,7 +98,7 @@ MongoClient.connect(mongoUri, function(err, db) {
       });
     });
     sequence.then(function() {
-      console.log('Done.');
+      console.log('Done');
       process.exit();
     });
   });
