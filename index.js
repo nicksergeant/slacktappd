@@ -1,5 +1,7 @@
 'use strict';
 
+console.log('- Starting.');
+
 var futures = require('futures');
 var MongoClient = require('mongodb').MongoClient;
 var request = require('request');
