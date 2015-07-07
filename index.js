@@ -71,8 +71,7 @@ users.forEach(function(user) {
 
 console.log('- Connecting to Mongo.');
 
-var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://172.17.42.1:27017/slacktappd';
-MongoClient.connect(mongoUri, function(err, db) {
+MongoClient.connect(process.env.MONGO_URL, function(err, db) {
   if (err) throw err;
   console.log('- No DB connection error.');
   Q.all(userPromises).then(function() {
