@@ -9,7 +9,6 @@ var Q = require('q');
 
 function postToSlack(checkin) {
   var deferred = Q.defer();
-  var sys = require('sys');
   var exec = require('child_process').exec;
 
   function done(error, stdout, stderr) {
@@ -37,7 +36,9 @@ function postToSlack(checkin) {
 
   var webhookURLs = process.env.SLACK_WEBHOOK_URL.split(',');
   webhookURLs.forEach(function(webhookURL) {
-    exec('curl -X POST --data-urlencode \'payload=' + JSON.stringify(payload) + '\' ' + webhookURL, done);
+    payload = JSON.stringify(payload);
+    exec('curl -X POST --data-urlencode \'payload=' + payload + '\' ' + webhookURL, done);
+    process.stdout.write('Sending payload to Slack: ' + payload);
   });
 
   return deferred.promise;
