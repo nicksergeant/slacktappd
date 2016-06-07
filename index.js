@@ -42,7 +42,11 @@ function postToSlack(checkin) {
     process.stdout.write('Sending payload to Slack: ' + JSON.stringify(payload));
     slack.setWebhook(webhookURL);
     slack.webhook(payload, function(err, response) {
-      process.stdout.write('Response from Slack: ' + JSON.stringify(response));
+      if (err) {
+        process.stdout.write('Error from Slack: ' + JSON.stringify(response));
+      } else {
+        process.stdout.write('Response from Slack: ' + JSON.stringify(response));
+      }
     });
 
   });
