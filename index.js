@@ -10,6 +10,11 @@ var request = require('request');
 
 var slack = new Slack();
 
+process.on('uncaughtException', (err) => {
+  process.stderr.write('Caught exception: ' + err);
+  process.exit();
+});
+
 function postToSlack(checkin) {
   var deferred = Q.defer();
   var exec = require('child_process').exec;
