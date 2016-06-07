@@ -8,7 +8,7 @@ var Slack = require('slack-node');
 var futures = require('futures');
 var request = require('request');
 
-slack = new Slack();
+var slack = new Slack();
 
 function postToSlack(checkin) {
   var deferred = Q.defer();
