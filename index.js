@@ -2,10 +2,13 @@
 
 console.log('- Starting.');
 
-var futures = require('futures');
 var MongoClient = require('mongodb').MongoClient;
-var request = require('request');
 var Q = require('q');
+var Slack = require('slack-node');
+var futures = require('futures');
+var request = require('request');
+
+slack = new Slack();
 
 function postToSlack(checkin) {
   var deferred = Q.defer();
@@ -36,9 +39,12 @@ function postToSlack(checkin) {
 
   var webhookURLs = process.env.SLACK_WEBHOOK_URL.split(',');
   webhookURLs.forEach(function(webhookURL) {
-    payload = JSON.stringify(payload);
-    exec('curl -X POST --data-urlencode \'payload=' + payload + '\' ' + webhookURL, done);
-    process.stdout.write('Sending payload to Slack: ' + payload);
+    process.stdout.write('Sending payload to Slack: ' + JSON.stringify(payload));
+    slack.setWebhook(webhookURL);
+    slack.webhook(payload, function(err, response) {
+      process.stdout.write('Response from Slack: ' + JSON.stringify(response));
+    });
+
   });
 
   return deferred.promise;
