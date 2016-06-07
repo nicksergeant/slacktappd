@@ -44,6 +44,7 @@ function postToSlack(checkin) {
 
   var webhookURLs = process.env.SLACK_WEBHOOK_URL.split(',');
   webhookURLs.forEach(function(webhookURL) {
+    process.stdout.write('Using Slack webhook URL: ' + webhookURL);
     process.stdout.write('Sending payload to Slack: ' + JSON.stringify(payload));
     slack.setWebhook(webhookURL);
     slack.webhook(payload, function(err, response) {
