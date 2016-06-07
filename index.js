@@ -11,7 +11,7 @@ var request = require('request');
 var slack = new Slack();
 
 process.on('uncaughtException', (err) => {
-  process.stderr.write('Caught exception: ' + err);
+  console.log('- Caught exception: ' + err);
   process.exit();
 });
 
@@ -44,15 +44,16 @@ function postToSlack(checkin) {
 
   var webhookURLs = process.env.SLACK_WEBHOOK_URL.split(',');
   webhookURLs.forEach(function(webhookURL) {
-    process.stdout.write('Using Slack webhook URL: ' + webhookURL);
-    process.stdout.write('Sending payload to Slack: ' + JSON.stringify(payload));
+    console.log('- Using Slack webhook URL: ' + webhookURL);
+    console.log('- Sending payload to Slack: ' + JSON.stringify(payload));
     slack.setWebhook(webhookURL);
     slack.webhook(payload, function(err, response) {
       if (err) {
-        process.stdout.write('Error from Slack: ' + JSON.stringify(response));
+        console.log('- Error from Slack: ' + JSON.stringify(response));
       } else {
-        process.stdout.write('Response from Slack: ' + JSON.stringify(response));
+        console.log('- Response from Slack: ' + JSON.stringify(response));
       }
+      done();
     });
 
   });
