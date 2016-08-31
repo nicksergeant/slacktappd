@@ -1,3 +1,5 @@
+## Deprecated in favor of https://github.com/nicksergeant/slacktapped.
+
 slacktappd
 ==========
 
